@@ -28,6 +28,6 @@ Pod::Spec.new do |spec|
   spec.swift_version = "4.2" 
   #spec.dependency = 'Alamofire', '5.0.0-beta.3'
    #spec.dependency 'Alamofire', "= 5.0.0-beta.3"
-   #spec.dependency 'Alamofire'
+  spec.dependency 'Alamofire'
    #pec.dependency 'Alamofire', '5.0.0-beta.3'
 end

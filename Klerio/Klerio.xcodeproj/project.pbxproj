@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E9F048D0734B5904F51B0A7 /* Pods_Klerio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C5A27376457108509E6A37 /* Pods_Klerio.framework */; };
 		55CDA323240193D900A5FB19 /* Klerio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CDA319240193D900A5FB19 /* Klerio.framework */; };
 		55CDA328240193D900A5FB19 /* KlerioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA327240193D900A5FB19 /* KlerioTests.swift */; };
 		55CDA32A240193D900A5FB19 /* Klerio.h in Headers */ = {isa = PBXBuildFile; fileRef = 55CDA31C240193D900A5FB19 /* Klerio.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,6 +19,7 @@
 		55CDA38724019ED800A5FB19 /* KlerioDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38624019ED800A5FB19 /* KlerioDatabase.swift */; };
 		55CDA3892401AD2E00A5FB19 /* BatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA3882401AD2E00A5FB19 /* BatchManager.swift */; };
 		55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38A2401B0F200A5FB19 /* APIService.swift */; };
+		6AF33D0C880100F5A8684B5C /* Pods_Klerio_KlerioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		519C69BCEEEA50329F1E4B0A /* Pods-Klerio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio.release.xcconfig"; path = "Target Support Files/Pods-Klerio/Pods-Klerio.release.xcconfig"; sourceTree = "<group>"; };
+		5201625495F88EA40536183F /* Pods-Klerio-KlerioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio-KlerioTests.debug.xcconfig"; path = "Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		55CDA319240193D900A5FB19 /* Klerio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Klerio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CDA31C240193D900A5FB19 /* Klerio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Klerio.h; sourceTree = "<group>"; };
 		55CDA31D240193D900A5FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +49,10 @@
 		55CDA38624019ED800A5FB19 /* KlerioDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlerioDatabase.swift; sourceTree = "<group>"; };
 		55CDA3882401AD2E00A5FB19 /* BatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchManager.swift; sourceTree = "<group>"; };
 		55CDA38A2401B0F200A5FB19 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		84C5A27376457108509E6A37 /* Pods_Klerio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Klerio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F56E08BD7135ECB250DCEBC /* Pods-Klerio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio.debug.xcconfig"; path = "Target Support Files/Pods-Klerio/Pods-Klerio.debug.xcconfig"; sourceTree = "<group>"; };
+		A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Klerio_KlerioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC3951A88AE445F0A065DCDD /* Pods-Klerio-KlerioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio-KlerioTests.release.xcconfig"; path = "Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E9F048D0734B5904F51B0A7 /* Pods_Klerio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55CDA323240193D900A5FB19 /* Klerio.framework in Frameworks */,
+				6AF33D0C880100F5A8684B5C /* Pods_Klerio_KlerioTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +82,8 @@
 				55CDA31B240193D900A5FB19 /* Klerio */,
 				55CDA326240193D900A5FB19 /* KlerioTests */,
 				55CDA31A240193D900A5FB19 /* Products */,
+				DC4446DFB241E04617C19490 /* Pods */,
+				5C1C17B485D78C37268CAF59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +122,27 @@
 			path = KlerioTests;
 			sourceTree = "<group>";
 		};
+		5C1C17B485D78C37268CAF59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84C5A27376457108509E6A37 /* Pods_Klerio.framework */,
+				A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC4446DFB241E04617C19490 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F56E08BD7135ECB250DCEBC /* Pods-Klerio.debug.xcconfig */,
+				519C69BCEEEA50329F1E4B0A /* Pods-Klerio.release.xcconfig */,
+				5201625495F88EA40536183F /* Pods-Klerio-KlerioTests.debug.xcconfig */,
+				EC3951A88AE445F0A065DCDD /* Pods-Klerio-KlerioTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -128,6 +161,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55CDA32D240193D900A5FB19 /* Build configuration list for PBXNativeTarget "Klerio" */;
 			buildPhases = (
+				0F311C06CAC6F5BC36FDC810 /* [CP] Check Pods Manifest.lock */,
 				55CDA314240193D900A5FB19 /* Headers */,
 				55CDA315240193D900A5FB19 /* Sources */,
 				55CDA316240193D900A5FB19 /* Frameworks */,
@@ -146,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55CDA330240193D900A5FB19 /* Build configuration list for PBXNativeTarget "KlerioTests" */;
 			buildPhases = (
+				0E7534CA55155F0C650E1E84 /* [CP] Check Pods Manifest.lock */,
 				55CDA31E240193D900A5FB19 /* Sources */,
 				55CDA31F240193D900A5FB19 /* Frameworks */,
 				55CDA320240193D900A5FB19 /* Resources */,
+				8B06583D89A7861C09E5F458 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,6 +250,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E7534CA55155F0C650E1E84 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Klerio-KlerioTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F311C06CAC6F5BC36FDC810 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Klerio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B06583D89A7861C09E5F458 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55CDA315240193D900A5FB19 /* Sources */ = {
@@ -372,6 +472,7 @@
 		};
 		55CDA32E240193D900A5FB19 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F56E08BD7135ECB250DCEBC /* Pods-Klerio.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -397,6 +498,7 @@
 		};
 		55CDA32F240193D900A5FB19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 519C69BCEEEA50329F1E4B0A /* Pods-Klerio.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -421,6 +523,7 @@
 		};
 		55CDA331240193D900A5FB19 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5201625495F88EA40536183F /* Pods-Klerio-KlerioTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +542,7 @@
 		};
 		55CDA332240193D900A5FB19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC3951A88AE445F0A065DCDD /* Pods-Klerio-KlerioTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
