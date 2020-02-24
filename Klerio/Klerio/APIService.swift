@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol APIService {
     func send(events: [EventModel])
