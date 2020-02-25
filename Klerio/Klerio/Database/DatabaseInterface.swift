@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 final class DatabaseInterface {
     
@@ -16,6 +17,10 @@ final class DatabaseInterface {
     func save(event: EventModel) {
         self.database.save(event: event)
         BatchManager.shared.send(event: event)
+        
+        let strEntityName = "KlerioEvent"//getStringFromClass(aClassName: type)
+        let entityDescription = NSEntityDescription.entity(forEntityName: strEntityName, in: KlerioDatabase.sharedInstance.managedObjectContext)
+
     }
     
     func remove(eventWithIds eventIds: [String]) {
