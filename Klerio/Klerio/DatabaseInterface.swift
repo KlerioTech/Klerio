@@ -12,10 +12,9 @@ import CoreData
 final class DatabaseInterface {
     
     static let shared = DatabaseInterface()
-    private var database: Database = KlerioDatabase()
     
     func save(event: EventModel) {
-        self.database.save(event: event)
+//        self.database.save(event: event)
         BatchManager.shared.send(event: event)
         
         let strEntityName = "KlerioEvent"//getStringFromClass(aClassName: type)

@@ -33,15 +33,17 @@ final class KlerioDatabase: Database {
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let messageKitBundle = Bundle(identifier: self.identifier)
-        let modelURL = messageKitBundle!.url(forResource: self.model, withExtension: "momd")!
+//        let klerioKitBundle = Bundle(identifier: "com.klerio.Klerio")
+//        let klerioKitBundle = Bundle(for: KlerioDatabase.self)
+        let klerioKitBundle = Bundle(for: Self.self)
+        let modelURL = klerioKitBundle.url(forResource: self.model, withExtension: "momd")!
         let managedObjectModel =  NSManagedObjectModel(contentsOf: modelURL)
         return managedObjectModel!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.appendingPathComponent("CoreDataModel.sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("klerioData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             let options = [NSMigratePersistentStoresAutomaticallyOption: true,NSInferMappingModelAutomaticallyOption: true]
