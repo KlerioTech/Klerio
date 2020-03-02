@@ -23,11 +23,13 @@ Pod::Spec.new do |spec|
   #spec.source       = { :git => "https://github.com/aliakhtar49/MyFramework.git", :commit => "2c360b814bfb2c6aa233e72df892c71c84412b22" }
 
   
-  spec.source_files  = "Klerio"
+   spec.source_files  = "Klerio"
+  
   spec.exclude_files = "Classes/Exclude"
   spec.swift_version = "4.2" 
-  #spec.dependency = 'Alamofire', '5.0.0-beta.3'
-   #spec.dependency 'Alamofire', "= 5.0.0-beta.3"
   spec.dependency 'Alamofire'
-   #pec.dependency 'Alamofire', '5.0.0-beta.3'
+
+#  spec.source_files  = 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld', 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld/*.xcdatamodel'
+  spec.resources = [ 'Klerio/CoreDataModel.xcdatamodeld','Klerio/Klerio/CoreDataModel.xcdatamodeld/*.xcdatamodel']
+  spec.preserve_paths = 'Klerio/CoreDataModel.xcdatamodeld'
 end
