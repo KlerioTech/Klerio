@@ -17,7 +17,7 @@ public final class Klerio {
     public var delegate: KlerioProtocol?
      
     public func InitSdk() {
-        print("Test Klerio")
+        print("Init Klerio")
         
     }
     

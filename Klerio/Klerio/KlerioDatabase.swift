@@ -25,7 +25,7 @@ final class KlerioDatabase: Database {
     let identifier: String  = "com.klerio.Klerio"       //Framework bundle ID
     let model: String       = "CoreDataModel"                      //Model name
     var managedObjectContext:NSManagedObjectContext!
-   
+    
     
     lazy var applicationDocumentsDirectory: URL = {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -33,8 +33,6 @@ final class KlerioDatabase: Database {
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-//        let klerioKitBundle = Bundle(identifier: "com.klerio.Klerio")
-//        let klerioKitBundle = Bundle(for: KlerioDatabase.self)
         let klerioKitBundle = Bundle(for: Self.self)
         let modelURL = klerioKitBundle.url(forResource: self.model, withExtension: "momd")!
         let managedObjectModel =  NSManagedObjectModel(contentsOf: modelURL)
@@ -78,5 +76,4 @@ final class KlerioDatabase: Database {
             }
         }
     }
-    
 }
