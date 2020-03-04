@@ -14,13 +14,10 @@ final class DatabaseInterface:NSObject {
     static let shared = DatabaseInterface()
     
     func save(event: EventModel) {
-        BatchManager.shared.send(event: event)
-        
         do {
             let jsonData = try JSONEncoder().encode(event)
             self.saveEventData(eventData: jsonData)
         } catch { print(error) }
-        
         self.getEventData()
     }
     

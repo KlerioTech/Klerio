@@ -30,6 +30,8 @@ final class EventBuilder {
                                type: "log_event")
 
         DatabaseInterface.shared.save(event: model)
+        
+        BatchManager.shared.send(event: model)
     }
     
 }

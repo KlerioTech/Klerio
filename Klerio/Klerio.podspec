@@ -28,6 +28,7 @@ Pod::Spec.new do |spec|
   spec.exclude_files = "Classes/Exclude"
   spec.swift_version = "4.2" 
   spec.dependency 'Alamofire'
+  spec.dependency 'SwiftyJSON'
 
 #  spec.source_files  = 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld', 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld/*.xcdatamodel'
   spec.resources = [ 'Klerio/CoreDataModel.xcdatamodeld','Klerio/Klerio/CoreDataModel.xcdatamodeld/*.xcdatamodel']

@@ -6,8 +6,8 @@ target 'Klerio' do
   use_frameworks!
 
   # Pods for Klerio
-
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.9.1'
+  pod 'SwiftyJSON', '~>5.0.0'
 
   target 'KlerioTests' do
     # Pods for testing

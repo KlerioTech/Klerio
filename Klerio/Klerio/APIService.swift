@@ -9,16 +9,41 @@
 import Foundation
 import Alamofire
 
-protocol APIService {
-    func send(events: [EventModel])
-}
+//protocol APIService {
+//    func send(events: [EventModel])
+//}
+//
+//final class KlerioAPIClient: APIService {
+//
+//    func send(events: [EventModel]) {
+//        //TODO: implement this
+//
+//        //if success
+//        DatabaseInterface.shared.remove(eventWithIds: events.map { $0.id })
+//    }
+//}
 
-final class KlerioAPIClient: APIService {
+
+class APIService: NSObject {
     
-    func send(events: [EventModel]) {
-        //TODO: implement this
-        
-        //if success
-        DatabaseInterface.shared.remove(eventWithIds: events.map { $0.id })
+    var httpClient: HTTPClientProtocol
+    
+    init(httpClientObj: HTTPClientProtocol) {
+        self.httpClient = httpClientObj
     }
+    
+    func postEventDataOperation(requestBody: [String:Any], completion: @escaping (HTTPAPIResponse) -> Void) {
+        let PostEventUrl = BaseUrl.shared.getUrl()
+        let param  = getParams()
+        self.httpClient.postRequest(url: PostEventUrl, params: param, retryCount: 0, requestId: .KlerioPostEvent, completion: { (httpAPIResponse) in
+            completion(httpAPIResponse)
+        })
+    }
+    
+    private func getParams() -> [String: String] {
+        var params = [String: String]()
+        params["platform"] = "iOS_App"
+        return params
+    }
+    
 }

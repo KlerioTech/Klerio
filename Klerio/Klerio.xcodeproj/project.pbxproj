@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0E9F048D0734B5904F51B0A7 /* Pods_Klerio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C5A27376457108509E6A37 /* Pods_Klerio.framework */; };
+		554C0AF6240FD8C3002E61CA /* HTTPBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AEE240FD8C1002E61CA /* HTTPBaseModel.swift */; };
+		554C0AF7240FD8C3002E61CA /* HTTPAPIStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AEF240FD8C2002E61CA /* HTTPAPIStatus.swift */; };
+		554C0AF8240FD8C3002E61CA /* HTTPStatusHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF0240FD8C2002E61CA /* HTTPStatusHandler.swift */; };
+		554C0AF9240FD8C3002E61CA /* ServiceEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF1240FD8C2002E61CA /* ServiceEndPoints.swift */; };
+		554C0AFA240FD8C3002E61CA /* HTTPAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF2240FD8C2002E61CA /* HTTPAPIResponse.swift */; };
+		554C0AFB240FD8C3002E61CA /* BaseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF3240FD8C2002E61CA /* BaseParser.swift */; };
+		554C0AFC240FD8C3002E61CA /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF4240FD8C2002E61CA /* BaseUrl.swift */; };
+		554C0AFD240FD8C3002E61CA /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF5240FD8C3002E61CA /* HTTPClient.swift */; };
 		55B2778D240551B90024E754 /* KlerioDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B27789240551B90024E754 /* KlerioDatabase.swift */; };
 		55B2778E240551B90024E754 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55B2778A240551B90024E754 /* CoreDataModel.xcdatamodeld */; };
 		55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2778C240551B90024E754 /* DatabaseInterface.swift */; };
@@ -38,6 +46,14 @@
 /* Begin PBXFileReference section */
 		519C69BCEEEA50329F1E4B0A /* Pods-Klerio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio.release.xcconfig"; path = "Target Support Files/Pods-Klerio/Pods-Klerio.release.xcconfig"; sourceTree = "<group>"; };
 		5201625495F88EA40536183F /* Pods-Klerio-KlerioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio-KlerioTests.debug.xcconfig"; path = "Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		554C0AEE240FD8C1002E61CA /* HTTPBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPBaseModel.swift; sourceTree = "<group>"; };
+		554C0AEF240FD8C2002E61CA /* HTTPAPIStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPAPIStatus.swift; sourceTree = "<group>"; };
+		554C0AF0240FD8C2002E61CA /* HTTPStatusHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusHandler.swift; sourceTree = "<group>"; };
+		554C0AF1240FD8C2002E61CA /* ServiceEndPoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndPoints.swift; sourceTree = "<group>"; };
+		554C0AF2240FD8C2002E61CA /* HTTPAPIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPAPIResponse.swift; sourceTree = "<group>"; };
+		554C0AF3240FD8C2002E61CA /* BaseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseParser.swift; sourceTree = "<group>"; };
+		554C0AF4240FD8C2002E61CA /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
+		554C0AF5240FD8C3002E61CA /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		55B27789240551B90024E754 /* KlerioDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlerioDatabase.swift; sourceTree = "<group>"; };
 		55B2778B240551B90024E754 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		55B2778C240551B90024E754 /* DatabaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseInterface.swift; sourceTree = "<group>"; };
@@ -105,6 +121,14 @@
 		55CDA31B240193D900A5FB19 /* Klerio */ = {
 			isa = PBXGroup;
 			children = (
+				554C0AF3240FD8C2002E61CA /* BaseParser.swift */,
+				554C0AF4240FD8C2002E61CA /* BaseUrl.swift */,
+				554C0AF2240FD8C2002E61CA /* HTTPAPIResponse.swift */,
+				554C0AEF240FD8C2002E61CA /* HTTPAPIStatus.swift */,
+				554C0AEE240FD8C1002E61CA /* HTTPBaseModel.swift */,
+				554C0AF5240FD8C3002E61CA /* HTTPClient.swift */,
+				554C0AF0240FD8C2002E61CA /* HTTPStatusHandler.swift */,
+				554C0AF1240FD8C2002E61CA /* ServiceEndPoints.swift */,
 				55B2778A240551B90024E754 /* CoreDataModel.xcdatamodeld */,
 				55B2778C240551B90024E754 /* DatabaseInterface.swift */,
 				55B27789240551B90024E754 /* KlerioDatabase.swift */,
@@ -328,16 +352,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554C0AF9240FD8C3002E61CA /* ServiceEndPoints.swift in Sources */,
 				55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */,
 				55CDA38124019E7400A5FB19 /* CommonProperties.swift in Sources */,
+				554C0AF8240FD8C3002E61CA /* HTTPStatusHandler.swift in Sources */,
+				554C0AFC240FD8C3002E61CA /* BaseUrl.swift in Sources */,
 				55CDA37F24019E4E00A5FB19 /* DeviceProperties.swift in Sources */,
 				55B2778E240551B90024E754 /* CoreDataModel.xcdatamodeld in Sources */,
 				55B2778D240551B90024E754 /* KlerioDatabase.swift in Sources */,
 				55CDA38324019E8A00A5FB19 /* EventBuilder.swift in Sources */,
 				55C7626F2405263800570E88 /* Utility.swift in Sources */,
+				554C0AFA240FD8C3002E61CA /* HTTPAPIResponse.swift in Sources */,
 				55CDA3342401940800A5FB19 /* KlerioInterface.swift in Sources */,
+				554C0AF7240FD8C3002E61CA /* HTTPAPIStatus.swift in Sources */,
+				554C0AFB240FD8C3002E61CA /* BaseParser.swift in Sources */,
 				55C7626D2405261300570E88 /* Constant.swift in Sources */,
 				55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */,
+				554C0AF6240FD8C3002E61CA /* HTTPBaseModel.swift in Sources */,
+				554C0AFD240FD8C3002E61CA /* HTTPClient.swift in Sources */,
 				55CDA3892401AD2E00A5FB19 /* BatchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
