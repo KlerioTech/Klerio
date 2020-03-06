@@ -56,8 +56,8 @@ enum HTTPRequestID: String {
     static func getHeaders(isBearrerRequired:Bool = false, requestId:HTTPRequestID = .UnKnown) -> HTTPHeaders  {
         var headerValues : HTTPHeaders = [:]
         headerValues["Content-Type"] = "application/json"
-        headerValues["Accept"] = "application/json"
-        headerValues["x-client"] = "ios"
+//        headerValues["Accept"] = "application/json"
+//        headerValues["x-client"] = "ios"
         return headerValues
     }
 }

@@ -40,8 +40,8 @@ class APIService: NSObject {
         })
     }
     
-    private func getParams() -> [String: String] {
-        var params = [String: String]()
+    private func getParams() -> [String: Any] {
+        var params = [String: Any]()
         params["platform"] = "iOS_App"
         return params
     }

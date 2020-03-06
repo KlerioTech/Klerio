@@ -26,6 +26,7 @@ class HTTPClient: HTTPClientProtocol {
         print("Request Header : \(String(describing: reqHeader))")
         print("Request URL : \(String(describing: url))")
         
+        createSession(requestedCachePolicy:.reloadIgnoringCacheData)
         if let request = sessionManager?.request(url, method: .post, parameters: bodyParam, encoding:JSONEncoding.default, headers: reqHeader) {
             request.responseData {
                 response in
@@ -36,6 +37,17 @@ class HTTPClient: HTTPClientProtocol {
             }
         }
     }
+    
+    //MARK: Private Methods
+    func  createSession(requestedCachePolicy:NSURLRequest.CachePolicy) {
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = requestedCachePolicy
+        let timeOut =  20
+        configuration.timeoutIntervalForRequest = TimeInterval(timeOut)
+        configuration.timeoutIntervalForResource = TimeInterval(timeOut)
+        sessionManager =  Alamofire.SessionManager(configuration: configuration)
+    }
+    
     
     func getHTTPAPIResponseObject(response : DataResponse<Data>) -> HTTPAPIResponse {
         var httpResponseData : HTTPAPIResponse
