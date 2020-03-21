@@ -13,33 +13,52 @@ final class BatchManager {
     static let shared = BatchManager()
     private var batchArray: [EventModel]?
     private var apiService: APIService = APIService(httpClientObj: HTTPClient.shared)
+    private var batchSize = 5
     
-    func sendQueuedEventFromDB() {
-        // check N/W and continue
-        if let retrivedKlerioEventArray = DatabaseInterface.shared.getEventData() {
-            for event in retrivedKlerioEventArray {
-                BatchManager.shared.send(event: event)
-            }
+    func sendEventBatch() {
+        if let retrivedKlerioEventArray = DatabaseInterface.shared.getEvents(batchSize: batchSize) {
+            BatchManager.shared.send(events: retrivedKlerioEventArray)
         }
     }
     
-    func send(event: KlerioEvent) {
-        /*Batch:
-        size = 5
-        add to batchArray
-        if batchArray.cout == 5
-        then send and batchArray = nil
-        */
-        self.sendBatchToAPI(event: event)
+    func sendQueuedEventFromDB() {
+        // check N/W and continue
+        if let retrivedKlerioEventArray = DatabaseInterface.shared.getEventData(),retrivedKlerioEventArray.count > 0{
+            
+            BatchManager.shared.send(events: retrivedKlerioEventArray)
+        }
     }
     
-    private func sendBatchToAPI(event: KlerioEvent) {
-        if let responseDict = DatabaseInterface.getDictionaryObject(responseData: event.eventData!) {
-            apiService.postEventDataOperation(requestBody: responseDict) {(httpAPIResponse) in
-                if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
-                    DatabaseInterface.shared.remove(eventId:event.eventID)
-                }
+    func sendAllSavedEvent() {
+        
+    }
+    
+    func sendOnlineEvent() {
+        
+    }
+    
+    func send(events : [KlerioEvent]) {
+        self.sendBatchToAPI(events: events)
+    }
+    
+    private func sendBatchToAPI(events : [KlerioEvent]) {
+        print("Batch started:",events.count)
+
+        var batchDictArray: [[String : Any]] = [[String : Any]]()
+        for event in events {
+            if let responseDict = DatabaseInterface.getDictionaryObject(responseData: event.eventData!) {
+                batchDictArray.append(responseDict)
             }
+        }
+        var batchDict: [String:Any] = [String:Any]()
+        batchDict["event_batch"] = batchDictArray
+        apiService.postEventDataOperation(requestBody: batchDict) {(httpAPIResponse) in
+            //                if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
+            for event in events {
+                DatabaseInterface.shared.remove(eventId:event.eventID)
+            }
+            print("Batch completed")
+            //                }
         }
     }
 }

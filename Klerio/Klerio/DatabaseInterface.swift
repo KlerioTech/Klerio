@@ -38,8 +38,22 @@ final class DatabaseInterface:NSObject {
     }
     
     func remove(eventId: Int64) {
+        let context = KlerioDatabase.sharedInstance.managedObjectContext
+        let fetchPredicate = NSPredicate(format: "eventID == %d",eventId)
+        let fetchEvent = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
+        fetchEvent.predicate  = fetchPredicate
+        fetchEvent.returnsObjectsAsFaults   = false
         
-        
+        do {
+            let items = try context?.fetch(fetchEvent) as! [NSManagedObject]
+            for item in items {
+                context?.delete(item)
+                print("removed ID:",eventId)
+            }
+            KlerioDatabase.sharedInstance.saveContext()
+        } catch {
+            print(error.localizedDescription)
+        }
         
         self.getEventData()
     }
@@ -48,14 +62,30 @@ final class DatabaseInterface:NSObject {
         if let receivedData =  eventData {
             let klerioEvent = DatabaseInterface.insertModelObject(KlerioEvent.self)
             klerioEvent?.eventData = receivedData as Data
-            klerioEvent?.eventID = Int64(DatabaseInterface.getCountForEvent())
+            klerioEvent?.eventID = Int64(DatabaseInterface.getMaxID())
+            
             KlerioDatabase.sharedInstance.saveContext()
         }
+        // If online mode
+        BatchManager.shared.sendEventBatch()
     }
     
     func getEventData() ->  [KlerioEvent]? {
         print("getEventData()")
             return DatabaseInterface.getAllEvents()
+    }
+    
+    func getEvents(batchSize : Int) -> [KlerioEvent]? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
+        fetchRequest.fetchLimit = batchSize
+        do {
+            let results = try KlerioDatabase.sharedInstance.managedObjectContext.fetch(fetchRequest)
+            print("Total records",results.count)
+            return results as? [KlerioEvent]
+        } catch let error as NSError {
+            print("Could not fetch \(error)")
+        }
+        return nil
     }
 }
 
@@ -85,11 +115,30 @@ extension DatabaseInterface {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
         do {
             let results = try KlerioDatabase.sharedInstance.managedObjectContext.fetch(fetchRequest)
+            print("Total records",results.count)
             return results as? [KlerioEvent]
         } catch let error as NSError {
             print("Could not fetch \(error)")
         }
         return nil
+    }
+    
+    static func getMaxID() -> Int {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
+        let sortDescriptor = NSSortDescriptor(key: "eventID", ascending: true)
+        let sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        do {
+            let results = try KlerioDatabase.sharedInstance.managedObjectContext.fetch(fetchRequest) as? [KlerioEvent]
+            if let event = results?.last {
+                print("MaxID Count",Int (event.eventID) + 1)
+                return Int (event.eventID) + 1
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error)")
+        }
+        return 1
     }
     
     static func getModelObject<T:NSManagedObject>(_ type: T.Type, predicate: NSPredicate?) -> T?{

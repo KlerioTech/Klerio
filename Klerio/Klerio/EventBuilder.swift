@@ -31,11 +31,8 @@ final class EventBuilder {
         let  commonProperties = CommonProperties.getProperties()
         finalEventDict["common_properties"] = commonProperties
 
-        let model = EventModel(id: eventName,
-                               type: "log_event")
         DatabaseInterface.shared.save(event: finalEventDict)
     }
-    
 }
 
 struct EventModel: Codable {
