@@ -13,54 +13,83 @@ final class DatabaseInterface:NSObject {
     
     static let shared = DatabaseInterface()
     
-    func save(event: EventModel) {
+    func save(event: [String : Any]) {
+        //        do {
+        //            let jsonData = try JSONEncoder().encode(event)
+        //            if let jsonString = String(data: jsonData, encoding: .utf8) {
+        //                print("Event JSON:",jsonString)
+        //            }
+        //            self.saveEventData(eventData: jsonData)
+        //        } catch { print(error) }
+        
         do {
-            let jsonData = try JSONEncoder().encode(event)
+            let jsonData = try JSONSerialization.data(withJSONObject: event, options: .prettyPrinted)
+            // here "jsonData" is the dictionary encoded in JSON data
+            let decoded = try JSONSerialization.jsonObject(with: jsonData, options: [])
+            // here "decoded" is of type `Any`, decoded from JSON data
+            // you can now cast it with the right type
+            if let dictFromJSON = decoded as? [String:String] {
+                print(dictFromJSON)
+            }
             self.saveEventData(eventData: jsonData)
-        } catch { print(error) }
-        self.getEventData()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
-    func remove(eventWithIds eventIds: [String]) {
+    func remove(eventId: Int64) {
         
+        
+        
+        self.getEventData()
     }
     
     func saveEventData(eventData : Data?) {
         if let receivedData =  eventData {
-            var klerioEvent = DatabaseInterface.getModelObject(KlerioEvent.self, predicate: nil)
-            if klerioEvent == nil {
-                klerioEvent = DatabaseInterface.insertModelObject(KlerioEvent.self)
-            }
+            let klerioEvent = DatabaseInterface.insertModelObject(KlerioEvent.self)
             klerioEvent?.eventData = receivedData as Data
+            klerioEvent?.eventID = Int64(DatabaseInterface.getCountForEvent())
             KlerioDatabase.sharedInstance.saveContext()
         }
     }
     
-    func getEventData() ->  EventModel? {
+    func getEventData() ->  [KlerioEvent]? {
         print("getEventData()")
-        let klerioEvent = DatabaseInterface.getModelObject(KlerioEvent.self, predicate: nil)
-        if let recivedData = klerioEvent?.eventData as Data? {
-            if let responseDict = DatabaseInterface.getDictionaryObject(responseData: recivedData) {
-                print("Retrived Event = ",responseDict)
-            }
-        }
-        return nil
+            return DatabaseInterface.getAllEvents()
     }
 }
 
 extension DatabaseInterface {
+    static func getCountForEvent() -> Int {
+        let moc = KlerioDatabase.sharedInstance.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
+        let count = try! moc!.count(for: fetchRequest)
+        return count+1
+    }
+    
     static func getDictionaryObject(responseData:Data) -> Dictionary<String, Any>? {
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: responseData, options:JSONSerialization.ReadingOptions(rawValue: 0))
-                guard let dictionary = jsonObject as? Dictionary<String, Any> else {
-                    print("Not a Dictionary")
-                    return nil
-                }
-                return dictionary
-            } catch {
-                print(error)
+        do {
+            let jsonObject = try JSONSerialization.jsonObject(with: responseData, options:JSONSerialization.ReadingOptions(rawValue: 0))
+            guard let dictionary = jsonObject as? Dictionary<String, Any> else {
+                print("Not a Dictionary")
                 return nil
             }
+            return dictionary
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    static func getAllEvents() -> [KlerioEvent]? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
+        do {
+            let results = try KlerioDatabase.sharedInstance.managedObjectContext.fetch(fetchRequest)
+            return results as? [KlerioEvent]
+        } catch let error as NSError {
+            print("Could not fetch \(error)")
+        }
+        return nil
     }
     
     static func getModelObject<T:NSManagedObject>(_ type: T.Type, predicate: NSPredicate?) -> T?{

@@ -14,22 +14,32 @@ final class BatchManager {
     private var batchArray: [EventModel]?
     private var apiService: APIService = APIService(httpClientObj: HTTPClient.shared)
     
-    func send(event: EventModel) {
-        
+    func sendQueuedEventFromDB() {
+        // check N/W and continue
+        if let retrivedKlerioEventArray = DatabaseInterface.shared.getEventData() {
+            for event in retrivedKlerioEventArray {
+                BatchManager.shared.send(event: event)
+            }
+        }
+    }
+    
+    func send(event: KlerioEvent) {
         /*Batch:
         size = 5
         add to batchArray
         if batchArray.cout == 5
         then send and batchArray = nil
         */
-        self.sendBatchToAPI(events: [event])
+        self.sendBatchToAPI(event: event)
     }
     
-    private func sendBatchToAPI(events: [EventModel]) {
-        
-        apiService.postEventDataOperation(requestBody: ["testkey":"Test Val"]) {(httpAPIResponse) in
-            
+    private func sendBatchToAPI(event: KlerioEvent) {
+        if let responseDict = DatabaseInterface.getDictionaryObject(responseData: event.eventData!) {
+            apiService.postEventDataOperation(requestBody: responseDict) {(httpAPIResponse) in
+                if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
+                    DatabaseInterface.shared.remove(eventId:event.eventID)
+                }
+            }
         }
     }
-    
 }

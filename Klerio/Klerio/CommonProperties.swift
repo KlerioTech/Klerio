@@ -11,7 +11,7 @@ import Foundation
 final class CommonProperties {
     
     static func getProperties() ->[String: Any] {
-        return ["OSVersion" : "iOS"]
+        return ["OSVersion" : "iOS","consumer_name":"Klerio Demo","consumer_app_version":"1.0"]
     }
     
     

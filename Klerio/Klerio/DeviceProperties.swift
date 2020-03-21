@@ -11,7 +11,7 @@ import Foundation
 final class DeviceProperties {
     
     static func getProperties() ->[String: Any] {
-        return ["DeviceName" : "iPhone X"]
+        return ["device_name" : "iPhone X","device_platform" : "iOS","device_type":"Phone"]
     }
     
     
