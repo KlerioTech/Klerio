@@ -63,16 +63,16 @@ final class DatabaseInterface:NSObject {
             let klerioEvent = DatabaseInterface.insertModelObject(KlerioEvent.self)
             klerioEvent?.eventData = receivedData as Data
             klerioEvent?.eventID = Int64(DatabaseInterface.getMaxID())
-            
             KlerioDatabase.sharedInstance.saveContext()
         }
-        // If online mode
-        BatchManager.shared.sendEventBatch()
+        if ReachabilityManager.sharedInstance.isNetworkReachable {
+            BatchManager.shared.sendEventBatch()
+        }
     }
     
     func getEventData() ->  [KlerioEvent]? {
         print("getEventData()")
-            return DatabaseInterface.getAllEvents()
+        return DatabaseInterface.getAllEvents()
     }
     
     func getEvents(batchSize : Int) -> [KlerioEvent]? {

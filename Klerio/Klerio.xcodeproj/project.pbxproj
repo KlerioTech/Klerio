@@ -30,6 +30,7 @@
 		55CDA38324019E8A00A5FB19 /* EventBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38224019E8A00A5FB19 /* EventBuilder.swift */; };
 		55CDA3892401AD2E00A5FB19 /* BatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA3882401AD2E00A5FB19 /* BatchManager.swift */; };
 		55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38A2401B0F200A5FB19 /* APIService.swift */; };
+		55FAC87B24273DB500BC7878 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FAC87A24273DB500BC7878 /* ReachabilityManager.swift */; };
 		6AF33D0C880100F5A8684B5C /* Pods_Klerio_KlerioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		55CDA38224019E8A00A5FB19 /* EventBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuilder.swift; sourceTree = "<group>"; };
 		55CDA3882401AD2E00A5FB19 /* BatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchManager.swift; sourceTree = "<group>"; };
 		55CDA38A2401B0F200A5FB19 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		55FAC87A24273DB500BC7878 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		84C5A27376457108509E6A37 /* Pods_Klerio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Klerio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F56E08BD7135ECB250DCEBC /* Pods-Klerio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio.debug.xcconfig"; path = "Target Support Files/Pods-Klerio/Pods-Klerio.debug.xcconfig"; sourceTree = "<group>"; };
 		A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Klerio_KlerioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 				55CDA38A2401B0F200A5FB19 /* APIService.swift */,
 				55C7626C2405261300570E88 /* Constant.swift */,
 				55C7626E2405263800570E88 /* Utility.swift */,
+				55FAC87A24273DB500BC7878 /* ReachabilityManager.swift */,
 			);
 			path = Klerio;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */,
 				55CDA38124019E7400A5FB19 /* CommonProperties.swift in Sources */,
 				554C0AF8240FD8C3002E61CA /* HTTPStatusHandler.swift in Sources */,
+				55FAC87B24273DB500BC7878 /* ReachabilityManager.swift in Sources */,
 				554C0AFC240FD8C3002E61CA /* BaseUrl.swift in Sources */,
 				55CDA37F24019E4E00A5FB19 /* DeviceProperties.swift in Sources */,
 				55B2778E240551B90024E754 /* CoreDataModel.xcdatamodeld in Sources */,

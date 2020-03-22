@@ -34,8 +34,8 @@ class APIService: NSObject {
     
     func postEventDataOperation(requestBody: [String:Any], completion: @escaping (HTTPAPIResponse) -> Void) {
         let PostEventUrl = BaseUrl.shared.getUrl()
-        let param  = getParams()
-        self.httpClient.postRequest(url: PostEventUrl, params: param, retryCount: 0, requestId: .KlerioPostEvent, completion: { (httpAPIResponse) in
+//        let param  = getParams()
+        self.httpClient.postRequest(url: PostEventUrl, params: requestBody, retryCount: 0, requestId: .KlerioPostEvent, completion: { (httpAPIResponse) in
             completion(httpAPIResponse)
         })
     }

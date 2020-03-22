@@ -35,7 +35,7 @@ enum HTTPRequestID: String {
         return BaseUrl.shared
     }
     
-    fileprivate var strDomainUrl: String = "https://httpbin.org"
+    fileprivate var strDomainUrl: String = "http://35.223.32.150/ingester"
     private override init() {
         
     }

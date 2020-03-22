@@ -21,17 +21,17 @@ class HTTPClient: HTTPClientProtocol {
         
         let bodyParam = BaseUrl.getBodyParameter(params:params )
         let reqHeader = BaseUrl.getHeaders(requestId: requestId)
-//        print("Request Started : \(requestId.name)")
-//        print("Request BodyParam : \(String(describing: bodyParam))")
-//        print("Request Header : \(String(describing: reqHeader))")
-//        print("Request URL : \(String(describing: url))")
+        print("Request Started : \(requestId.name)")
+        print("Request BodyParam : \(String(describing: bodyParam))")
+        print("Request Header : \(String(describing: reqHeader))")
+        print("Request URL : \(String(describing: url))")
         
         createSession(requestedCachePolicy:.reloadIgnoringCacheData)
         if let request = sessionManager?.request(url, method: .post, parameters: bodyParam, encoding:JSONEncoding.default, headers: reqHeader) {
             request.responseData {
                 response in
                 let responseString = String(data: response.data!, encoding: String.Encoding.utf8)
-//                print("Response Received for service - \(requestId.name) : \n \(String(describing: responseString))")
+                print("Response Received for service - \(requestId.name) : \n \(String(describing: responseString))")
                 let httpResponseData : HTTPAPIResponse = self.getHTTPAPIResponseObject(response:response)
                 completion(httpResponseData)
             }
