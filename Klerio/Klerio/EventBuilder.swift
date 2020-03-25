@@ -8,6 +8,15 @@
 
 import Foundation
 
+extension DateFormatter {
+    static var sharedDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        // Add your formatter configuration here
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter
+    }()
+}
+
 final class EventBuilder {
      static let shared = EventBuilder()
     
@@ -17,7 +26,8 @@ final class EventBuilder {
         finalEventDict["event_id"] = "123"
         finalEventDict["event_type"] = "log_event"
 
-        var eventProperties: [String : Any] = ["event_name": eventName] //, "created_at": Date()
+        let dateString = DateFormatter.sharedDateFormatter.string(from: Date())
+        var eventProperties: [String : Any] = ["event_name": eventName,"created_at":dateString]
         if let properties = properties {
             eventProperties.merge(properties) { (v1, v2) -> Any in
                 return v1

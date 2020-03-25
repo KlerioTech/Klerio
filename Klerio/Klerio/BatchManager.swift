@@ -55,14 +55,13 @@ final class BatchManager {
         }
         var batchDict: [String:Any] = [String:Any]()
         batchDict["event_batch"] = batchDictArray
-        print("Batch Dict:",batchDict)
         apiService.postEventDataOperation(requestBody: batchDict) {(httpAPIResponse) in
-            if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
+//            if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
                 for event in events {
                     DatabaseInterface.shared.remove(eventId:event.eventID)
                 }
                 print("Batch completed")
-            }
+//            }
         }
     }
 }
