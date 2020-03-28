@@ -18,9 +18,10 @@ public final class Klerio {
      
     public func InitSdk() {
         print("Init Klerio")
-        if ReachabilityManager.sharedInstance.isNetworkReachable {
-            BatchManager.shared.sendQueuedEventFromDB()
-        }
+        BatchManager.shared.startBatchPerodicTimer()
+//        if ReachabilityManager.sharedInstance.isNetworkReachable {
+//            BatchManager.shared.sendQueuedEventFromDB()
+//        }
     }
     
     public func collect (eventName: String, eventProperties: [String:Any]?) {

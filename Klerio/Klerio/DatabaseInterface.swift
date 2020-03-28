@@ -65,9 +65,9 @@ final class DatabaseInterface:NSObject {
             klerioEvent?.eventID = Int64(DatabaseInterface.getMaxID())
             KlerioDatabase.sharedInstance.saveContext()
         }
-        if ReachabilityManager.sharedInstance.isNetworkReachable {
-            BatchManager.shared.sendEventBatch()
-        }
+//        if ReachabilityManager.sharedInstance.isNetworkReachable {
+//            BatchManager.shared.sendEventBatch()
+//        }
     }
     
     func getEventData() ->  [KlerioEvent]? {
