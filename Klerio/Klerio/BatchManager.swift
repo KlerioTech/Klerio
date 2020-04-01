@@ -29,7 +29,9 @@ final class BatchManager {
     }
     
     @objc func runTimedCode() {
-        self.sendQueuedEventFromDB()
+        if ReachabilityManager.sharedInstance.isNetworkReachable {
+            self.sendQueuedEventFromDB()
+        }
     }
     
     //    func sendEventBatch() {
