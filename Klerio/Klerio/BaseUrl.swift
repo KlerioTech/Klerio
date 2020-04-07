@@ -35,7 +35,7 @@ enum HTTPRequestID: String {
         return BaseUrl.shared
     }
     
-    fileprivate var strDomainUrl: String = "http://35.223.32.150/ingester"
+    fileprivate var strDomainUrl: String = KlerioConstant.SERVER_HOST_URL
     private override init() {
         
     }
@@ -45,19 +45,20 @@ enum HTTPRequestID: String {
     }
     
     func getUrl()->String{
-        return String(format: "%@/post", getDomainHost())
+        return String(format: "%@", getDomainHost())
     }
     
     static func getBodyParameter (params : Dictionary<String, Any>?) -> Parameters? {
         let bodyParam:Parameters? = params
         return bodyParam
     }
-    
+
     static func getHeaders(isBearrerRequired:Bool = false, requestId:HTTPRequestID = .UnKnown) -> HTTPHeaders  {
         var headerValues : HTTPHeaders = [:]
         headerValues["Content-Type"] = "application/json"
 //        headerValues["Accept"] = "application/json"
-//        headerValues["x-client"] = "ios"
+        headerValues["kl-client-id"] = KlerioConstant.CLIENT_ID
+        headerValues["kl-client-token"] = KlerioConstant.CLIENT_TOKEN
         return headerValues
     }
 }

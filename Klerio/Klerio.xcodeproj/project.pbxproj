@@ -26,7 +26,7 @@
 		55CDA32A240193D900A5FB19 /* Klerio.h in Headers */ = {isa = PBXBuildFile; fileRef = 55CDA31C240193D900A5FB19 /* Klerio.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55CDA3342401940800A5FB19 /* KlerioInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA3332401940800A5FB19 /* KlerioInterface.swift */; };
 		55CDA37F24019E4E00A5FB19 /* DeviceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA37E24019E4E00A5FB19 /* DeviceProperties.swift */; };
-		55CDA38124019E7400A5FB19 /* CommonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38024019E7400A5FB19 /* CommonProperties.swift */; };
+		55CDA38124019E7400A5FB19 /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38024019E7400A5FB19 /* UserProperties.swift */; };
 		55CDA38324019E8A00A5FB19 /* EventBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38224019E8A00A5FB19 /* EventBuilder.swift */; };
 		55CDA3892401AD2E00A5FB19 /* BatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA3882401AD2E00A5FB19 /* BatchManager.swift */; };
 		55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38A2401B0F200A5FB19 /* APIService.swift */; };
@@ -68,7 +68,7 @@
 		55CDA329240193D900A5FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55CDA3332401940800A5FB19 /* KlerioInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlerioInterface.swift; sourceTree = "<group>"; };
 		55CDA37E24019E4E00A5FB19 /* DeviceProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProperties.swift; sourceTree = "<group>"; };
-		55CDA38024019E7400A5FB19 /* CommonProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProperties.swift; sourceTree = "<group>"; };
+		55CDA38024019E7400A5FB19 /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
 		55CDA38224019E8A00A5FB19 /* EventBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBuilder.swift; sourceTree = "<group>"; };
 		55CDA3882401AD2E00A5FB19 /* BatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchManager.swift; sourceTree = "<group>"; };
 		55CDA38A2401B0F200A5FB19 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				55CDA31D240193D900A5FB19 /* Info.plist */,
 				55CDA3332401940800A5FB19 /* KlerioInterface.swift */,
 				55CDA37E24019E4E00A5FB19 /* DeviceProperties.swift */,
-				55CDA38024019E7400A5FB19 /* CommonProperties.swift */,
+				55CDA38024019E7400A5FB19 /* UserProperties.swift */,
 				55CDA38224019E8A00A5FB19 /* EventBuilder.swift */,
 				55CDA3882401AD2E00A5FB19 /* BatchManager.swift */,
 				55CDA38A2401B0F200A5FB19 /* APIService.swift */,
@@ -357,7 +357,7 @@
 			files = (
 				554C0AF9240FD8C3002E61CA /* ServiceEndPoints.swift in Sources */,
 				55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */,
-				55CDA38124019E7400A5FB19 /* CommonProperties.swift in Sources */,
+				55CDA38124019E7400A5FB19 /* UserProperties.swift in Sources */,
 				554C0AF8240FD8C3002E61CA /* HTTPStatusHandler.swift in Sources */,
 				55FAC87B24273DB500BC7878 /* ReachabilityManager.swift in Sources */,
 				554C0AFC240FD8C3002E61CA /* BaseUrl.swift in Sources */,

@@ -22,16 +22,24 @@ class HTTPClient: HTTPClientProtocol {
         let bodyParam = BaseUrl.getBodyParameter(params:params )
         let reqHeader = BaseUrl.getHeaders(requestId: requestId)
         print("Request Started : \(requestId.name)")
-//        print("Request BodyParam : \(String(describing: bodyParam))")
-//        print("Request Header : \(String(describing: reqHeader))")
-//        print("Request URL : \(String(describing: url))")
+        print("Request Header : \(String(describing: reqHeader))")
+        print("Request URL : \(String(describing: url))")
+        do {
+            let jsonData: Data = try JSONSerialization.data(withJSONObject: bodyParam as Any, options: [])
+            if  let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) {
+                print("Request JSON - ", jsonString as String)
+            }
+        } catch let error as NSError {
+            print("Array convertIntoJSON - \(error.description)")
+        }
+        
         
         createSession(requestedCachePolicy:.reloadIgnoringCacheData)
         if let request = sessionManager?.request(url, method: .post, parameters: bodyParam, encoding:JSONEncoding.default, headers: reqHeader) {
             request.responseData {
                 response in
                 let responseString = String(data: response.data!, encoding: String.Encoding.utf8)
-//                print("Response Received for service - \(requestId.name) : \n \(String(describing: responseString))")
+                print("Response Received for service - \(requestId.name) : \n \(String(describing: responseString))")
                 print("API success")
                 let httpResponseData : HTTPAPIResponse = self.getHTTPAPIResponseObject(response:response)
                 completion(httpResponseData)
@@ -43,9 +51,8 @@ class HTTPClient: HTTPClientProtocol {
     func  createSession(requestedCachePolicy:NSURLRequest.CachePolicy) {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = requestedCachePolicy
-        let timeOut =  20
-        configuration.timeoutIntervalForRequest = TimeInterval(timeOut)
-        configuration.timeoutIntervalForResource = TimeInterval(timeOut)
+        configuration.timeoutIntervalForRequest = TimeInterval(KlerioConstant.DEFAULT_CONNECT_TIMEOUT_MS)
+        configuration.timeoutIntervalForResource = TimeInterval(KlerioConstant.DEFAULT_READ_TIMEOUT_MS)
         sessionManager =  Alamofire.SessionManager(configuration: configuration)
     }
     

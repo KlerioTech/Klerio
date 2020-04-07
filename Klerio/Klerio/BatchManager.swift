@@ -21,7 +21,6 @@ final class BatchManager {
     static let shared = BatchManager()
     private var batchArray: [EventModel]?
     private var apiService: APIService = APIService(httpClientObj: HTTPClient.shared)
-    private var batchSize = 5
     private var batchTimer: Timer?
     
     func startBatchPerodicTimer() {
@@ -48,7 +47,7 @@ final class BatchManager {
         if !isBatchDataSending {
             if let retrivedKlerioEventArray = DatabaseInterface.shared.getEventData(),retrivedKlerioEventArray.count > 0{
                 print("started ......")
-                eventArray = retrivedKlerioEventArray.chunked(into: batchSize)
+                eventArray = retrivedKlerioEventArray.chunked(into: KlerioConstant.BATCH_SIZE)
                 self.sendBatch(batch: eventArray[0], batchCount:0, completion: { (success) -> Void in
                     if success {
                         print("Batch Data send successfuly")

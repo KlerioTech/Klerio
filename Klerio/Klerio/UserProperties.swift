@@ -1,5 +1,5 @@
 //
-//  CommonProperties.swift
+//  UserProperties.swift
 //  Klerio
 //
 //  Created by Swapnil Jagtap on 22/02/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CommonProperties {
+final class UserProperties {
     
     static func getProperties() ->[String: Any] {
         return ["OSVersion" : "iOS","consumer_name":"Klerio Demo","consumer_app_version":"1.0"]
