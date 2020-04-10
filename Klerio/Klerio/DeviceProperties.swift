@@ -13,6 +13,7 @@ import AdSupport
 
 class DeviceProperties {
     static var contextProps:[String:Any] = [String:Any]()
+    static let locationManager = LocationManager()
 
     static func getProperties() -> [String:Any] {
         addSdkProps()
@@ -20,16 +21,61 @@ class DeviceProperties {
         addOsInfo()
         addDisplayInfo()
         addConsumerInfo()
+        getLocationDetails()
+        getIPAddress()
         return contextProps
     }
     
-    //  sdk         : done
-    //  device      : done
-    //  display     : done
-    //  consumer    : wip
-    //location
-    //os
-    //network - dynamic
+    static func getIPAddress() {
+        var address: String?
+        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+        if getifaddrs(&ifaddr) == 0 {
+            var ptr = ifaddr
+            while ptr != nil {
+                defer { ptr = ptr?.pointee.ifa_next }
+
+                let interface = ptr?.pointee
+                let addrFamily = interface?.ifa_addr.pointee.sa_family
+                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+                    // wifi = ["en0"]
+                    // wired = ["en2", "en3", "en4"]
+                    // cellular = ["pdp_ip0","pdp_ip1","pdp_ip2","pdp_ip3"]
+                    let name: String = String(cString: (interface!.ifa_name))
+                    if  name == "en0" || name == "en2" || name == "en3" || name == "en4" || name == "pdp_ip0" || name == "pdp_ip1" || name == "pdp_ip2" || name == "pdp_ip3" {
+                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST)
+                        address = String(cString: hostname)
+                    }
+                }
+            }
+            freeifaddrs(ifaddr)
+        }
+        contextProps["device_ip"] = address ?? ""
+    }
+    
+     static func getLocationDetails() {
+         
+        guard let exposedLocation = LocationManager.exposedLocation else {
+             print("*** Error in \(#function): exposedLocation is nil")
+             return
+         }
+        contextProps["device_latitude"] = exposedLocation.coordinate.latitude
+         contextProps["device_longitude"] = exposedLocation.coordinate.longitude
+
+         LocationManager.getPlace(for: exposedLocation) { placemark in
+             guard let placemark = placemark else { return }
+            
+             if let country = placemark.country {
+                contextProps["device_gps_country"] = country
+             }
+             if let state = placemark.administrativeArea {
+                contextProps["device_gps_state"] = (state)
+             }
+             if let town = placemark.locality {
+                contextProps["device_gps_city"] = (town)
+             }
+         }
+     }
     
     static func addSdkProps() {
         contextProps["sdk_name"] = "sdk-ios"

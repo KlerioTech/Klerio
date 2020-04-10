@@ -22,6 +22,7 @@ final class EventBuilder {
     
     func buildEvent(eventName: String, properties: [String:Any]?) {
         print("EventBuilder : buildEvent")
+        
         var finalEventDict: [String : Any] = [String : Any]()
         let uuid = UUID().uuidString
         finalEventDict["event_id"] = uuid

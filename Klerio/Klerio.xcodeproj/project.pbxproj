@@ -16,6 +16,7 @@
 		554C0AFB240FD8C3002E61CA /* BaseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF3240FD8C2002E61CA /* BaseParser.swift */; };
 		554C0AFC240FD8C3002E61CA /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF4240FD8C2002E61CA /* BaseUrl.swift */; };
 		554C0AFD240FD8C3002E61CA /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554C0AF5240FD8C3002E61CA /* HTTPClient.swift */; };
+		55752BCF243EF9BC00DFD142 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55752BCE243EF9BC00DFD142 /* LocationManager.swift */; };
 		55B2778D240551B90024E754 /* KlerioDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B27789240551B90024E754 /* KlerioDatabase.swift */; };
 		55B2778E240551B90024E754 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55B2778A240551B90024E754 /* CoreDataModel.xcdatamodeld */; };
 		55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2778C240551B90024E754 /* DatabaseInterface.swift */; };
@@ -55,6 +56,7 @@
 		554C0AF3240FD8C2002E61CA /* BaseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseParser.swift; sourceTree = "<group>"; };
 		554C0AF4240FD8C2002E61CA /* BaseUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
 		554C0AF5240FD8C3002E61CA /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		55752BCE243EF9BC00DFD142 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		55B27789240551B90024E754 /* KlerioDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KlerioDatabase.swift; sourceTree = "<group>"; };
 		55B2778B240551B90024E754 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		55B2778C240551B90024E754 /* DatabaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseInterface.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				55C7626C2405261300570E88 /* Constant.swift */,
 				55C7626E2405263800570E88 /* Utility.swift */,
 				55FAC87A24273DB500BC7878 /* ReachabilityManager.swift */,
+				55752BCE243EF9BC00DFD142 /* LocationManager.swift */,
 			);
 			path = Klerio;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				554C0AFB240FD8C3002E61CA /* BaseParser.swift in Sources */,
 				55C7626D2405261300570E88 /* Constant.swift in Sources */,
 				55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */,
+				55752BCF243EF9BC00DFD142 /* LocationManager.swift in Sources */,
 				554C0AF6240FD8C3002E61CA /* HTTPBaseModel.swift in Sources */,
 				554C0AFD240FD8C3002E61CA /* HTTPClient.swift in Sources */,
 				55CDA3892401AD2E00A5FB19 /* BatchManager.swift in Sources */,
