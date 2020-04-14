@@ -11,7 +11,7 @@ import UIKit
 import SwiftUI
 import AdSupport
 
-class DeviceProperties {
+final class DeviceProperties {
     static var contextProps:[String:Any] = [String:Any]()
     static let locationManager = LocationManager()
 
@@ -97,6 +97,12 @@ class DeviceProperties {
         contextProps["device_language"] = Locale.current.languageCode
         contextProps["device_country"] = Locale.current.regionCode
         contextProps["device_id"] = UIDevice.current.identifierForVendor!.uuidString
+        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+            contextProps["adv_id_allowed"] = "true"
+        }else {
+            contextProps["adv_id_allowed"] = "false"
+        }
+
         let webView = UIWebView(frame: CGRect.zero)
         contextProps["device_user_agent"] = webView.stringByEvaluatingJavaScript(from: "navigator.userAgent")
     }

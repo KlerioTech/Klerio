@@ -18,10 +18,13 @@ public final class Klerio {
      
     public func InitSdk() {
         print("Init Klerio")
+        // get current number of times app has been launched
+        let currentCount = UserDefaults.standard.integer(forKey: "launchCount")
+
+        // increment received number by one
+        UserDefaults.standard.set(currentCount+1, forKey:"launchCount")
+
         BatchManager.shared.startBatchPerodicTimer()
-//        if ReachabilityManager.sharedInstance.isNetworkReachable {
-//            BatchManager.shared.sendQueuedEventFromDB()
-//        }
     }
     
     public func collect (eventName: String, eventProperties: [String:Any]?) {
@@ -31,5 +34,8 @@ public final class Klerio {
     }
     
     public func collect (userProperties: [String:Any]?) {
+        if !(userProperties?.isEmpty ?? true) {
+            EventBuilder.shared.buildUserProperties(properties: userProperties!)
+        }
     }
 }

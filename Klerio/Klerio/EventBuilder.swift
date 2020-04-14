@@ -31,7 +31,6 @@ final class EventBuilder {
         finalEventDict["event_name"] = eventName
         finalEventDict["created_at"] = dateString
         
-
         finalEventDict["event_properties"] = properties
         
         let deviceProperties = DeviceProperties.getProperties()
@@ -40,6 +39,28 @@ final class EventBuilder {
         let  userProperties = UserProperties.getProperties()
         finalEventDict["user_properties"] = userProperties
 
+        DatabaseInterface.shared.save(event: finalEventDict)
+    }
+    
+    func buildUserProperties(properties: [String:Any]) {
+        print("EventBuilder : buildUserProp")
+        
+        var finalEventDict: [String : Any] = [String : Any]()
+        let uuid = UUID().uuidString
+        finalEventDict["event_id"] = uuid
+        finalEventDict["post_type"] = "log_user_prop"
+        let dateString = DateFormatter.sharedDateFormatter.string(from: Date())
+        finalEventDict["created_at"] = dateString
+                
+        let deviceProperties = DeviceProperties.getProperties()
+        finalEventDict["device_properties"] = deviceProperties
+        
+        let  userProperties = UserProperties.getProperties()
+        var mergedProperties = properties
+        mergedProperties.merge(userProperties) { (v1, v2) -> Any in
+                return v1
+            }
+        finalEventDict["user_properties"] = mergedProperties
         DatabaseInterface.shared.save(event: finalEventDict)
     }
 }
