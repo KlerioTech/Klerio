@@ -23,7 +23,21 @@ final class DeviceProperties {
         addConsumerInfo()
         getLocationDetails()
         getIPAddress()
+        setNetworkConnectionType()
         return contextProps
+    }
+    
+    static func setNetworkConnectionType() {
+        contextProps["network_connection"] = ReachabilityManager.sharedInstance.getNetworkConnectionType()
+        if (ReachabilityManager.sharedInstance.getWiFiSSID() != nil) {
+            contextProps["network_wifi_ssid"] = ReachabilityManager.sharedInstance.getWiFiSSID()
+        }
+        if (ReachabilityManager.sharedInstance.getTelephonyCarrierName() != nil) {
+            contextProps["network_carrier"] = ReachabilityManager.sharedInstance.getTelephonyCarrierName()
+        }
+        if (ReachabilityManager.sharedInstance.cellularNetworkType != nil) {
+            contextProps["network_type"] = ReachabilityManager.sharedInstance.cellularNetworkType
+        }
     }
     
     static func getIPAddress() {

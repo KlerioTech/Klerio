@@ -24,6 +24,7 @@ enum ReachabilityManagerStatus:Int {
     public static let sharedInstance = ReachabilityManager()
     let reachabilityManager = NetworkReachabilityManager()
     var isNetworkReachable = false
+    var networkConnectionType:String = "offline"
     private var listeners : [String:(ReachabilityManagerStatus)->Void] = [:]
     
     func addListener(identifier:String, listener:@escaping (ReachabilityManagerStatus)->Void){
@@ -40,41 +41,53 @@ enum ReachabilityManagerStatus:Int {
         reachabilityManager?.listener = { [weak self] status in
             switch status {
             case .reachable(.ethernetOrWiFi):
-                self?.reachable()
+                self?.reachableWithType(type: "wifi")
             case .reachable(.wwan):
-                self?.reachable()
+                self?.reachableWithType(type: "mobile")
             case .notReachable:
-                self?.notReachable()
+                self?.notReachableWithType(type: "offline")
             case .unknown :
-                self?.notReachable()
+                self?.notReachableWithType(type: "offline")
             }
         }
         reachabilityManager?.startListening()
     }
     
-    private func reachable(){
+    func getNetworkConnectionType() -> String {
+        let status = reachabilityManager?.networkReachabilityStatus
+        var type =  "offline"
+        switch status {
+        case .reachable(.ethernetOrWiFi):
+            type = "wifi"
+        case .reachable(.wwan):
+            type = "mobile"
+        case .notReachable:
+            type = "offline"
+        case .unknown :
+            type = "offline"
+        case .none: break
+        }
+        return type
+    }
+    
+    private func reachableWithType(type: String){
         self.isNetworkReachable = true
+        self.networkConnectionType = type
         for listener in listeners.values {
             listener(ReachabilityManagerStatus.isreachable)
         }
-        
-//        self.getWifiInfo()
-//        self.getWiFiName()
-//        self.getNetworkType()
-//        self.getTelephonyInfo()
-        
-
     }
     
-    private func notReachable(){
+    private func notReachableWithType(type: String){
         self.isNetworkReachable = false
+        self.networkConnectionType = type
         for listener in listeners.values {
             listener(ReachabilityManagerStatus.isNotReachable)
         }
     }
     
     
-    func getWiFiName() -> String? {
+    func getWiFiSSID() -> String? {
         var ssid: String?
         if let interfaces = CNCopySupportedInterfaces() as NSArray? {
             for interface in interfaces {
@@ -87,122 +100,76 @@ enum ReachabilityManagerStatus:Int {
         return ssid
     }
     
-    func getNetworkType() -> String? {
-        let networkInfo = CTTelephonyNetworkInfo()
-        let networkString = networkInfo.currentRadioAccessTechnology
-
-        if networkString == CTRadioAccessTechnologyLTE{
-          // LTE (4G)
-        }else if networkString == CTRadioAccessTechnologyWCDMA{
-          // 3G
-        }else if networkString == CTRadioAccessTechnologyEdge{
-          // EDGE (2G)
-        }
-        return ""
-    }
     
-    func getTelephonyInfo()->String?{
+    
+    func getTelephonyCarrierName() -> String? {
         let networkInfo = CTTelephonyNetworkInfo()
-        let currCarrierType: String?
         if #available(iOS 12.0, *) {
-//            let serviceSubscriberCellularProviders = networkInfo.serviceSubscriberCellularProviders
-
-            // get curr value:
-            guard let dict = networkInfo.serviceCurrentRadioAccessTechnology else{
+            guard let carrier = networkInfo.serviceSubscriberCellularProviders?.first?.value else {
+                // No carrier info available
                 return nil
             }
-            // as apple states
-            // https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/3024510-servicecurrentradioaccesstechnol
-            // 1st value is our string:
-            let key = dict.keys.first! // Apple assures is present...
-
-            // use it on previous dict:
-            let carrierType = dict[key]
-
-            // to compare:
-            guard networkInfo.currentRadioAccessTechnology != nil else {
+            return carrier.carrierName
+        }else{
+            guard let carrier: CTCarrier = networkInfo.subscriberCellularProvider else {
+                // No carrier info available
                 return nil
             }
-            currCarrierType = carrierType
-
-        } else {
-            // Fall back to pre iOS12
-            guard let carrierType = networkInfo.currentRadioAccessTechnology else {
-                return nil
-            }
-            currCarrierType = carrierType
+            return carrier.carrierName
         }
-
-
-        switch currCarrierType{
-        case CTRadioAccessTechnologyGPRS:
-            return "2G" + " (GPRS)"
-
-        case CTRadioAccessTechnologyEdge:
-            return "2G" + " (Edge)"
-
-        case CTRadioAccessTechnologyCDMA1x:
-            return "2G" + " (CDMA1x)"
-
-        case CTRadioAccessTechnologyWCDMA:
-            return "3G" + " (WCDMA)"
-
-        case CTRadioAccessTechnologyHSDPA:
-            return "3G" + " (HSDPA)"
-
-        case CTRadioAccessTechnologyHSUPA:
-            return "3G" + " (HSUPA)"
-
-        case CTRadioAccessTechnologyCDMAEVDORev0:
-            return "3G" + " (CDMAEVDORev0)"
-
-        case CTRadioAccessTechnologyCDMAEVDORevA:
-            return "3G" + " (CDMAEVDORevA)"
-
-        case CTRadioAccessTechnologyCDMAEVDORevB:
-            return "3G" + " (CDMAEVDORevB)"
-
-        case CTRadioAccessTechnologyeHRPD:
-            return "3G" + " (eHRPD)"
-
-        case CTRadioAccessTechnologyLTE:
-            return "4G" + " (LTE)"
-
-        default:
-            break;
-        }
-
-        return "newer type!"
     }
     
-    struct WifiInfo {
-            public let interface:String
-            public let ssid:String
-            public let bssid:String
-            init(_ interface:String, _ ssid:String,_ bssid:String) {
-                self.interface = interface
-                self.ssid = ssid
-                self.bssid = bssid
+    public var cellularNetworkType: String? {
+        let networkInfo = CTTelephonyNetworkInfo()
+        if #available(iOS 12.0, *) {
+            let currCarrierType: String
+            guard let dict = networkInfo.serviceCurrentRadioAccessTechnology, dict.count > 0  else{
+                return nil
+            }
+            let key = dict.keys.first! // Apple assures is present...
+            let carrierType = dict[key]
+            currCarrierType = carrierType!
+            switch currCarrierType {
+            case CTRadioAccessTechnologyLTE:
+                return "4G"
+            case CTRadioAccessTechnologyeHRPD,
+                 CTRadioAccessTechnologyHSDPA,
+                 CTRadioAccessTechnologyWCDMA,
+                 CTRadioAccessTechnologyHSUPA,
+                 CTRadioAccessTechnologyCDMAEVDORev0,
+                 CTRadioAccessTechnologyCDMAEVDORevA,
+                 CTRadioAccessTechnologyCDMAEVDORevB:
+                return "3G"
+            case CTRadioAccessTechnologyEdge,
+                 CTRadioAccessTechnologyGPRS,
+                 CTRadioAccessTechnologyCDMA1x:
+                return "2G"
+            default:
+                return "unknown"
+            }
+        }else{
+            guard let radioAccessTechnology = networkInfo.currentRadioAccessTechnology else {
+                return nil
+            }
+            switch radioAccessTechnology {
+            case CTRadioAccessTechnologyLTE:
+                return "4G"
+            case CTRadioAccessTechnologyeHRPD,
+                 CTRadioAccessTechnologyHSDPA,
+                 CTRadioAccessTechnologyWCDMA,
+                 CTRadioAccessTechnologyHSUPA,
+                 CTRadioAccessTechnologyCDMAEVDORev0,
+                 CTRadioAccessTechnologyCDMAEVDORevA,
+                 CTRadioAccessTechnologyCDMAEVDORevB:
+                return "3G"
+            case CTRadioAccessTechnologyEdge,
+                 CTRadioAccessTechnologyGPRS,
+                 CTRadioAccessTechnologyCDMA1x:
+                return "2G"
+            default:
+                return "unknown"
             }
         }
-        
-        func getWifiInfo() -> Array<WifiInfo> {
-            guard let interfaceNames = CNCopySupportedInterfaces() as? [String] else {
-                return []
-            }
-            let wifiInfo:[WifiInfo] = interfaceNames.compactMap{ name in
-                guard let info = CNCopyCurrentNetworkInfo(name as CFString) as? [String:AnyObject] else {
-                    return nil
-                }
-                guard let ssid = info[kCNNetworkInfoKeySSID as String] as? String else {
-                    return nil
-                }
-                guard let bssid = info[kCNNetworkInfoKeyBSSID as String] as? String else {
-                    return nil
-                }
-                return WifiInfo(name, ssid,bssid)
-            }
-            return wifiInfo
-        }
-    
+    }
+
 }
