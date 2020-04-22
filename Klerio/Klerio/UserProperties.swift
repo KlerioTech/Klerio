@@ -11,7 +11,7 @@ import UIKit
 import AdSupport
 
 final class UserProperties {
-    
+    static let shared = DatabaseInterface()
     static var contextProps:[String:Any] = [String:Any]()
 
     static func getProperties() ->[String: Any] {

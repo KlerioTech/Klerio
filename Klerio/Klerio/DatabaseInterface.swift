@@ -13,15 +13,16 @@ final class DatabaseInterface:NSObject {
     
     static let shared = DatabaseInterface()
     
+    func saveUserProperty(userProp: [String : Any]) {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: userProp, options: .prettyPrinted)
+            self.saveUserPropertyData(userProp: jsonData)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func save(event: [String : Any]) {
-        //        do {
-        //            let jsonData = try JSONEncoder().encode(event)
-        //            if let jsonString = String(data: jsonData, encoding: .utf8) {
-        //                print("Event JSON:",jsonString)
-        //            }
-        //            self.saveEventData(eventData: jsonData)
-        //        } catch { print(error) }
-        
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: event, options: .prettyPrinted)
             // here "jsonData" is the dictionary encoded in JSON data
@@ -43,7 +44,6 @@ final class DatabaseInterface:NSObject {
         let fetchEvent = NSFetchRequest<NSFetchRequestResult>(entityName: "KlerioEvent")
         fetchEvent.predicate  = fetchPredicate
         fetchEvent.returnsObjectsAsFaults   = false
-        
         do {
             let items = try context?.fetch(fetchEvent) as! [NSManagedObject]
             for item in items {
@@ -58,6 +58,17 @@ final class DatabaseInterface:NSObject {
         self.getEventData()
     }
     
+    func saveUserPropertyData(userProp : Data?) {
+        if let receivedData =  userProp {
+            var userPropData = DatabaseInterface.getModelObject(KlerioUser.self, predicate: nil)
+            if userPropData == nil {
+                userPropData = DatabaseInterface.insertModelObject(KlerioUser.self)
+            }
+            userPropData?.userData  = receivedData as Data
+            KlerioDatabase.sharedInstance.saveContext()
+        }
+    }
+    
     func saveEventData(eventData : Data?) {
         if let receivedData =  eventData {
             let klerioEvent = DatabaseInterface.insertModelObject(KlerioEvent.self)
@@ -65,14 +76,20 @@ final class DatabaseInterface:NSObject {
             klerioEvent?.eventID = Int64(DatabaseInterface.getMaxID())
             KlerioDatabase.sharedInstance.saveContext()
         }
-//        if ReachabilityManager.sharedInstance.isNetworkReachable {
-//            BatchManager.shared.sendEventBatch()
-//        }
     }
     
     func getEventData() ->  [KlerioEvent]? {
         print("getEventData()")
         return DatabaseInterface.getAllEvents()
+    }
+    
+    func getUserProperty() -> [String : Any]?{
+        if let retrivedJsonData = DatabaseInterface.getModelObject(KlerioUser.self, predicate: nil) {
+            if let userPropData = (retrivedJsonData.userData as Data?) {
+                return DatabaseInterface.getDictionaryObject(responseData: userPropData)
+            }
+        }
+        return nil
     }
     
     func getEvents(batchSize : Int) -> [KlerioEvent]? {

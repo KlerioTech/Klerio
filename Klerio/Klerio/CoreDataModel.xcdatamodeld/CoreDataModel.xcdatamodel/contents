@@ -4,7 +4,11 @@
         <attribute name="eventData" optional="YES" attributeType="Binary"/>
         <attribute name="eventID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="KlerioUser" representedClassName="KlerioUser" syncable="YES" codeGenerationType="class">
+        <attribute name="userData" optional="YES" attributeType="Binary"/>
+    </entity>
     <elements>
         <element name="KlerioEvent" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="KlerioUser" positionX="-63" positionY="0" width="128" height="58"/>
     </elements>
 </model>
