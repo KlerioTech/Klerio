@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
 
 
     s.name             = 'Klerio'
-    s.version          = '1.0.2'
+    s.version          = '1.0.3'
     s.summary          = 'A highly customisable and reusable iOS circular slider.'
 
     # This description is used to generate tags and improve search results.
@@ -79,8 +79,11 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '10.0'
 
     s.source_files  = "Klerio"
-    # s.source_files = 'JOCircularSlider/Classes/**/*'
 
-    s.documentation_url = 'http://ouraigua.com/github/jocircularslider/docs/index.html'
+
+
+    # s.source_files = 'Klerio/Classes/**/*'
+
+    # s.documentation_url = 'http://ouraigua.com/github/jocircularslider/docs/index.html'
 
 end
