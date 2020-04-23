@@ -36,7 +36,7 @@ final class EventBuilder {
         let deviceProperties = DeviceProperties.getProperties()
         finalEventDict["device_properties"] = deviceProperties
         
-        let  userProperties = UserProperties.getProperties()
+        let userProperties = UserProperties.shared.getUserProperty(clientProperties: nil)
         finalEventDict["user_properties"] = userProperties
 
         DatabaseInterface.shared.save(event: finalEventDict)
@@ -55,16 +55,9 @@ final class EventBuilder {
         let deviceProperties = DeviceProperties.getProperties()
         finalEventDict["device_properties"] = deviceProperties
         
-        let  userProperties = UserProperties.getProperties()
-        DatabaseInterface.shared.saveUserProperty(userProp: userProperties)
+        let userProp = UserProperties.shared.getUserProperty(clientProperties: properties)
+        finalEventDict["user_properties"] = userProp
         
-        if let userProperty1 = DatabaseInterface.shared.getUserProperty() {
-            var mergedProperties = properties
-            mergedProperties.merge(userProperty1) { (v1, v2) -> Any in
-                    return v1
-                }
-            finalEventDict["user_properties"] = mergedProperties
-        }
         DatabaseInterface.shared.save(event: finalEventDict)
     }
 }

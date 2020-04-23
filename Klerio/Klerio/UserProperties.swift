@@ -11,10 +11,32 @@ import UIKit
 import AdSupport
 
 final class UserProperties {
-    static let shared = DatabaseInterface()
-    static var contextProps:[String:Any] = [String:Any]()
+    static let shared = UserProperties()
+    var contextProps:[String:Any] = [String:Any]()
 
-    static func getProperties() ->[String: Any] {
+    func getUserProperty(clientProperties: [String:Any]?) -> [String: Any] {
+        let  userProperties = self.getProperties()
+        if (clientProperties != nil) {
+            var mergedProperties = clientProperties!
+            mergedProperties.merge(userProperties) { (v1, v2) -> Any in
+                return v1
+            }
+            DatabaseInterface.shared.saveUserProperty(userProp: mergedProperties)
+        }else{
+            DatabaseInterface.shared.saveUserProperty(userProp: userProperties)
+        }
+        
+        if let userPropertyDB = DatabaseInterface.shared.getUserProperty() {
+            return userPropertyDB
+        }else{
+            return userProperties
+        }
+    }
+    
+    func getProperties() ->[String: Any] {
+        if let userPropertyDB = DatabaseInterface.shared.getUserProperty() {
+            contextProps = userPropertyDB
+        }
         setLaunctCount()
         setAnonymousID()
         setIsIDFATrackingEnabled()
@@ -22,13 +44,13 @@ final class UserProperties {
         return contextProps
     }
     
-    static func setIdentifierForAdvertising() {
+    func setIdentifierForAdvertising() {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_adv_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }
     }
     
-    static func setIsIDFATrackingEnabled() {
+    func setIsIDFATrackingEnabled() {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_adv_id_not_allowed"] = "false"
         }else {
@@ -36,7 +58,7 @@ final class UserProperties {
         }
     }
     
-    static func setAnonymousID() {
+    func setAnonymousID() {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_anonymous_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }else{
@@ -44,7 +66,7 @@ final class UserProperties {
         }
     }
     
-    static func setLaunctCount() {
+    func setLaunctCount() {
         let currentCount = UserDefaults.standard.integer(forKey: "launchCount")
         contextProps["klerio_launch_count"] = currentCount
     }
