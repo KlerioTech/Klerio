@@ -43,12 +43,12 @@ Pod::Spec.new do |s|
     
   s.exclude_files = 'Classes/Exclude'
   s.swift_version = '4.2' 
-  s.dependency 'Alamofire'
-  s.dependency 'SwiftyJSON'
+  #s.dependency 'Alamofire'
+  #s.dependency 'SwiftyJSON'
 
 #  spec.source_files  = 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld', 'Klerio/CoreDataModel.xcdatamodeld.xcdatamodeld/*.xcdatamodel'
-  s.resources = [ 'Klerio/CoreDataModel.xcdatamodeld','Klerio/Klerio/CoreDataModel.xcdatamodeld/*.xcdatamodel']
-  s.preserve_paths = 'Klerio/CoreDataModel.xcdatamodeld'
+  s.resources = [ 'Klerio/Klerio/CoreDataModel.xcdatamodeld','Klerio/Klerio/CoreDataModel.xcdatamodeld/*.xcdatamodel']
+  s.preserve_paths = 'Klerio/Klerio/CoreDataModel.xcdatamodeld'
 
 
 
@@ -78,10 +78,11 @@ Pod::Spec.new do |s|
 
     s.ios.deployment_target = '10.0'
 
+    s.framework = "XCTest"
     s.dependency 'Alamofire', '~> 4.9.1'
     s.dependency 'SwiftyJSON', '~>5.0.0'
 
-    s.source_files  = "Klerio"
+    s.source_files  = "Klerio/**/*.{h,m,swift}"
 
 
 
