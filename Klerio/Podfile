@@ -10,6 +10,7 @@ target 'Klerio' do
   pod 'SwiftyJSON', '~>5.0.0'
 
   target 'KlerioTests' do
+    inherit! :complete
     # Pods for testing
   end
 
