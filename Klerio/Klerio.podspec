@@ -78,6 +78,9 @@ Pod::Spec.new do |s|
 
     s.ios.deployment_target = '10.0'
 
+    s.dependency 'Alamofire', '~> 4.9.1'
+    s.dependency 'SwiftyJSON', '~>5.0.0'
+
     s.source_files  = "Klerio"
 
 
