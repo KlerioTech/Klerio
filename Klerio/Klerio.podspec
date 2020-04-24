@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
 
 
     s.name             = 'Klerio'
-    s.version          = '1.0.5'
+    s.version          = '1.0.6'
     s.summary          = 'A highly customisable and reusable iOS circular slider.'
 
     # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
 
     s.ios.deployment_target = '10.0'
 
-    s.framework = "XCTest"
+    # s.framework = "XCTest"
     s.dependency 'Alamofire', '~> 4.9.1'
     s.dependency 'SwiftyJSON', '~>5.0.0'
 
