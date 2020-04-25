@@ -83,6 +83,7 @@ Pod::Spec.new do |s|
     s.dependency 'SwiftyJSON', '~>5.0.0'
 
     s.source_files  = "Klerio/**/*.{h,m,swift}"
+    s.xcconfig = { 'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES' => 'YES' }
 
 
 
