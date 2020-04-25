@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,8 +22,6 @@
 		55B2778F240551B90024E754 /* DatabaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2778C240551B90024E754 /* DatabaseInterface.swift */; };
 		55C7626D2405261300570E88 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7626C2405261300570E88 /* Constant.swift */; };
 		55C7626F2405263800570E88 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7626E2405263800570E88 /* Utility.swift */; };
-		55CDA323240193D900A5FB19 /* Klerio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CDA319240193D900A5FB19 /* Klerio.framework */; };
-		55CDA328240193D900A5FB19 /* KlerioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA327240193D900A5FB19 /* KlerioTests.swift */; };
 		55CDA32A240193D900A5FB19 /* Klerio.h in Headers */ = {isa = PBXBuildFile; fileRef = 55CDA31C240193D900A5FB19 /* Klerio.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55CDA3342401940800A5FB19 /* KlerioInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA3332401940800A5FB19 /* KlerioInterface.swift */; };
 		55CDA37F24019E4E00A5FB19 /* DeviceProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA37E24019E4E00A5FB19 /* DeviceProperties.swift */; };
@@ -33,18 +31,7 @@
 		55CDA38B2401B0F200A5FB19 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDA38A2401B0F200A5FB19 /* APIService.swift */; };
 		55FAC87B24273DB500BC7878 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FAC87A24273DB500BC7878 /* ReachabilityManager.swift */; };
 		55FE5E82244DC0D7007C402F /* UserProp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FE5E81244DC0D7007C402F /* UserProp.plist */; };
-		6AF33D0C880100F5A8684B5C /* Pods_Klerio_KlerioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AEA5A4F2588649AE764449 /* Pods_Klerio_KlerioTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		55CDA324240193D900A5FB19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55CDA310240193D900A5FB19 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55CDA318240193D900A5FB19;
-			remoteInfo = Klerio;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		519C69BCEEEA50329F1E4B0A /* Pods-Klerio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klerio.release.xcconfig"; path = "Target Support Files/Pods-Klerio/Pods-Klerio.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,9 +53,6 @@
 		55CDA319240193D900A5FB19 /* Klerio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Klerio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CDA31C240193D900A5FB19 /* Klerio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Klerio.h; sourceTree = "<group>"; };
 		55CDA31D240193D900A5FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55CDA322240193D900A5FB19 /* KlerioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KlerioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		55CDA327240193D900A5FB19 /* KlerioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlerioTests.swift; sourceTree = "<group>"; };
-		55CDA329240193D900A5FB19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55CDA3332401940800A5FB19 /* KlerioInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KlerioInterface.swift; sourceTree = "<group>"; };
 		55CDA37E24019E4E00A5FB19 /* DeviceProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProperties.swift; sourceTree = "<group>"; };
 		55CDA38024019E7400A5FB19 /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
@@ -92,15 +76,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55CDA31F240193D900A5FB19 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55CDA323240193D900A5FB19 /* Klerio.framework in Frameworks */,
-				6AF33D0C880100F5A8684B5C /* Pods_Klerio_KlerioTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -108,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				55CDA31B240193D900A5FB19 /* Klerio */,
-				55CDA326240193D900A5FB19 /* KlerioTests */,
 				55CDA31A240193D900A5FB19 /* Products */,
 				DC4446DFB241E04617C19490 /* Pods */,
 				5C1C17B485D78C37268CAF59 /* Frameworks */,
@@ -119,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				55CDA319240193D900A5FB19 /* Klerio.framework */,
-				55CDA322240193D900A5FB19 /* KlerioTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,15 +126,6 @@
 				55FE5E81244DC0D7007C402F /* UserProp.plist */,
 			);
 			path = Klerio;
-			sourceTree = "<group>";
-		};
-		55CDA326240193D900A5FB19 /* KlerioTests */ = {
-			isa = PBXGroup;
-			children = (
-				55CDA327240193D900A5FB19 /* KlerioTests.swift */,
-				55CDA329240193D900A5FB19 /* Info.plist */,
-			);
-			path = KlerioTests;
 			sourceTree = "<group>";
 		};
 		5C1C17B485D78C37268CAF59 /* Frameworks */ = {
@@ -217,26 +181,6 @@
 			productReference = 55CDA319240193D900A5FB19 /* Klerio.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		55CDA321240193D900A5FB19 /* KlerioTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 55CDA330240193D900A5FB19 /* Build configuration list for PBXNativeTarget "KlerioTests" */;
-			buildPhases = (
-				0E7534CA55155F0C650E1E84 /* [CP] Check Pods Manifest.lock */,
-				55CDA31E240193D900A5FB19 /* Sources */,
-				55CDA31F240193D900A5FB19 /* Frameworks */,
-				55CDA320240193D900A5FB19 /* Resources */,
-				8B06583D89A7861C09E5F458 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				55CDA325240193D900A5FB19 /* PBXTargetDependency */,
-			);
-			name = KlerioTests;
-			productName = KlerioTests;
-			productReference = 55CDA322240193D900A5FB19 /* KlerioTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,9 +194,6 @@
 					55CDA318240193D900A5FB19 = {
 						CreatedOnToolsVersion = 11.1;
 						LastSwiftMigration = 1110;
-					};
-					55CDA321240193D900A5FB19 = {
-						CreatedOnToolsVersion = 11.1;
 					};
 				};
 			};
@@ -270,7 +211,6 @@
 			projectRoot = "";
 			targets = (
 				55CDA318240193D900A5FB19 /* Klerio */,
-				55CDA321240193D900A5FB19 /* KlerioTests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,38 +224,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55CDA320240193D900A5FB19 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E7534CA55155F0C650E1E84 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Klerio-KlerioTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0F311C06CAC6F5BC36FDC810 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,23 +247,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B06583D89A7861C09E5F458 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Klerio-KlerioTests/Pods-Klerio-KlerioTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -386,23 +280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55CDA31E240193D900A5FB19 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55CDA328240193D900A5FB19 /* KlerioTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		55CDA325240193D900A5FB19 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55CDA318240193D900A5FB19 /* Klerio */;
-			targetProxy = 55CDA324240193D900A5FB19 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		55CDA32B240193D900A5FB19 /* Debug */ = {
@@ -576,44 +454,6 @@
 			};
 			name = Release;
 		};
-		55CDA331240193D900A5FB19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5201625495F88EA40536183F /* Pods-Klerio-KlerioTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KlerioTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.klerio.KlerioTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		55CDA332240193D900A5FB19 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC3951A88AE445F0A065DCDD /* Pods-Klerio-KlerioTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = KlerioTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.klerio.KlerioTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -631,15 +471,6 @@
 			buildConfigurations = (
 				55CDA32E240193D900A5FB19 /* Debug */,
 				55CDA32F240193D900A5FB19 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		55CDA330240193D900A5FB19 /* Build configuration list for PBXNativeTarget "KlerioTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				55CDA331240193D900A5FB19 /* Debug */,
-				55CDA332240193D900A5FB19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

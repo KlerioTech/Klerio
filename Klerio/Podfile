@@ -9,9 +9,9 @@ target 'Klerio' do
   pod 'Alamofire', '~> 4.9.1'
   pod 'SwiftyJSON', '~>5.0.0'
 
-  target 'KlerioTests' do
-    inherit! :complete
-    # Pods for testing
-  end
+#  target 'KlerioTests' do
+#    inherit! :complete
+#    # Pods for testing
+#  end
 
 end
