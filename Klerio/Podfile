@@ -1,24 +1,24 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'Klerio' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for Klerio
   pod 'Alamofire', '~> 4.9.1'
   pod 'SwiftyJSON', '~>5.0.0'
-
-#  target 'KlerioTests' do
-#    inherit! :complete
-#    # Pods for testing
-#  end
-
-#target 'YourApp' do
-#    target 'YourAppTests' do
-#        inherit! :search_paths
-#        # Pods for testing
-#    end
-#end
-
+  
+  #  target 'KlerioTests' do
+  #    inherit! :complete
+  #    # Pods for testing
+  #  end
+  
+  #target 'YourApp' do
+  #    target 'YourAppTests' do
+  #        inherit! :search_paths
+  #        # Pods for testing
+  #    end
+  #end
+  
 end

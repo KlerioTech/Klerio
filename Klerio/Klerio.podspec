@@ -39,7 +39,7 @@
 
 Pod::Spec.new do |s|
 
-  s.platform     = :ios, '12.1'
+  s.platform     = :ios, '10.0'
     
   s.exclude_files = 'Classes/Exclude'
   s.swift_version = '4.2' 
