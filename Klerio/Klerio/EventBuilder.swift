@@ -27,9 +27,8 @@ final class EventBuilder {
         let uuid = UUID().uuidString
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_event"
-        let dateString = DateFormatter.sharedDateFormatter.string(from: Date())
         finalEventDict["event_name"] = eventName
-        finalEventDict["created_at"] = dateString
+        finalEventDict["event_time"] = NSDate().timeIntervalSince1970
         
         finalEventDict["event_properties"] = properties
         
@@ -49,8 +48,7 @@ final class EventBuilder {
         let uuid = UUID().uuidString
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_user_prop"
-        let dateString = DateFormatter.sharedDateFormatter.string(from: Date())
-        finalEventDict["created_at"] = dateString
+        finalEventDict["event_time"] = NSDate().timeIntervalSince1970
                 
         let deviceProperties = DeviceProperties.getProperties()
         finalEventDict["device_properties"] = deviceProperties
