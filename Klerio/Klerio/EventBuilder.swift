@@ -20,6 +20,10 @@ extension DateFormatter {
 final class EventBuilder {
      static let shared = EventBuilder()
     
+    func getCurrentMillis()->Int64 {
+        return Int64(Date().timeIntervalSince1970 * 1000)
+    }
+    
     func buildEvent(eventName: String, properties: [String:Any]?) {
         print("EventBuilder : buildEvent")
         
@@ -28,7 +32,7 @@ final class EventBuilder {
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_event"
         finalEventDict["event_name"] = eventName
-        finalEventDict["event_time"] = NSDate().timeIntervalSince1970
+        finalEventDict["event_time"] = getCurrentMillis
         
         finalEventDict["event_properties"] = properties
         
@@ -48,7 +52,7 @@ final class EventBuilder {
         let uuid = UUID().uuidString
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_user_prop"
-        finalEventDict["event_time"] = NSDate().timeIntervalSince1970
+        finalEventDict["event_time"] = getCurrentMillis
                 
         let deviceProperties = DeviceProperties.getProperties()
         finalEventDict["device_properties"] = deviceProperties
