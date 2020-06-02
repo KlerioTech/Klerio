@@ -32,7 +32,7 @@ final class EventBuilder {
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_event"
         finalEventDict["event_name"] = eventName
-        finalEventDict["event_time"] = getCurrentMillis
+        finalEventDict["event_time"] = getCurrentMillis() as Double
         
         finalEventDict["event_properties"] = properties
         
@@ -52,7 +52,7 @@ final class EventBuilder {
         let uuid = UUID().uuidString
         finalEventDict["event_id"] = uuid
         finalEventDict["post_type"] = "log_user_prop"
-        finalEventDict["event_time"] = getCurrentMillis
+        finalEventDict["event_time"] = getCurrentMillis() as Double
                 
         let deviceProperties = DeviceProperties.getProperties()
         finalEventDict["device_properties"] = deviceProperties
