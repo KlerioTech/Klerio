@@ -20,8 +20,8 @@ extension DateFormatter {
 final class EventBuilder {
      static let shared = EventBuilder()
     
-    func getCurrentMillis()->Int64 {
-        return Int64(Date().timeIntervalSince1970 * 1000)
+    func getCurrentMillis()->Double {
+        return Double(Int64(Date().timeIntervalSince1970 * 1000))
     }
     
     func buildEvent(eventName: String, properties: [String:Any]?) {
