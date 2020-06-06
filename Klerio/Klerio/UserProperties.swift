@@ -39,12 +39,17 @@ final class UserProperties {
         }
         setLaunctCount()
         setAnonymousID()
+        setUserID()
         setIsIDFATrackingEnabled()
         setIdentifierForAdvertising()
         return contextProps
     }
     
     func setIdentifierForAdvertising() {
+        //ToDo: remove later
+        contextProps["klerio_adv_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        return
+        
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_adv_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }
@@ -59,12 +64,29 @@ final class UserProperties {
     }
     
     func setAnonymousID() {
+        //ToDo: remove later
+        contextProps["klerio_anonymous_id"] = UIDevice.current.identifierForVendor!.uuidString
+        return
+        
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_anonymous_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }else{
             contextProps["klerio_anonymous_id"] = UIDevice.current.identifierForVendor!.uuidString
         }
     }
+    
+    func setUserID() {
+        //ToDo: remove later
+        contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
+        return
+        
+        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+            contextProps["id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        }else{
+            contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
+        }
+    }
+
     
     func setLaunctCount() {
         let currentCount = UserDefaults.standard.integer(forKey: "launchCount")
