@@ -12,6 +12,7 @@ import Alamofire
 //Request IDs
 enum HTTPRequestID: String {
     case KlerioPostEvent
+    case PostOriginalKlerioId
     case UnKnown
     
     var name: String {
@@ -36,6 +37,7 @@ enum HTTPRequestID: String {
     }
     
     fileprivate var strDomainUrl: String = KlerioConstant.SERVER_HOST_URL
+    fileprivate var strOriginalKlerioIdUrl: String = KlerioConstant.SERVER_HOST_GET_USERID
     private override init() {
         
     }
@@ -43,9 +45,16 @@ enum HTTPRequestID: String {
     func getDomainHost()->String{
         return self.strDomainUrl
     }
+    func getOriginalKlerioIdHost()->String{
+        return self.strOriginalKlerioIdUrl
+    }
     
     func getUrl()->String{
         return String(format: "%@", getDomainHost())
+    }
+    
+    func getHostUrlForOriginalKlerioId ()->String{
+        return String(format: "%@", getOriginalKlerioIdHost())
     }
     
     static func getBodyParameter (params : Dictionary<String, Any>?) -> Parameters? {
@@ -61,5 +70,13 @@ enum HTTPRequestID: String {
         headerValues["kl-client-token"] = KlerioConstant.CLIENT_TOKEN
         return headerValues
     }
+    
+        static func getHeadersForOriginalKlerioId(isBearrerRequired:Bool = false, requestId:HTTPRequestID = .UnKnown) -> HTTPHeaders  {
+            var headerValues : HTTPHeaders = [:]
+            headerValues["Content-Type"] = "application/json"
+            headerValues["kl-client-id"] = KlerioConstant.CLIENT_ID
+            headerValues["kl-client-token"] = KlerioConstant.CLIENT_TOKEN_GET_USERID
+            return headerValues
+        }
 }
 

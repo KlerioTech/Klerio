@@ -19,7 +19,7 @@ extension DateFormatter {
 
 final class EventBuilder {
      static let shared = EventBuilder()
-    
+
     func getCurrentMillis()->Double {
         return Double(Int64(Date().timeIntervalSince1970 * 1000))
     }
@@ -61,6 +61,10 @@ final class EventBuilder {
         finalEventDict["user_properties"] = userProp
         
         DatabaseInterface.shared.save(event: finalEventDict)
+    }
+    
+    func setUserID(userId: String) {
+        UserProperties.shared.setKlerioUserID(userId: userId)
     }
 }
 

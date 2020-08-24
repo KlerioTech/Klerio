@@ -13,7 +13,29 @@ import AdSupport
 final class UserProperties {
     static let shared = UserProperties()
     var contextProps:[String:Any] = [String:Any]()
+    private var apiService: APIService = APIService(httpClientObj: HTTPClient.shared)
 
+    func setKlerioUserID(userId: String) {
+        var UserDict: [String:Any] = [String:Any]()
+        UserDict["userId"] = userId
+        let  userProperties = self.getProperties()
+        //TODO: make MD5
+        UserDict["klerioAnonymousId"] = userProperties["klerio_anonymous_id"]
+
+        var dict: [String:Any] = [String:Any]()
+        dict["id"] = userId
+
+        apiService.postOriginalKlerioIdOperation(requestBody: UserDict) {(httpAPIResponse) in
+            if httpAPIResponse.status.statusCode == HTTPStatusCode.Success.rawValue {
+                print("OriginalKlerioId :: ",httpAPIResponse.description)
+                dict["klerio_anonymous_id"] = "123"
+            }else{
+                print("getOriginalKlerioIdAPIFails")
+            }
+        }
+        _ = self.getUserProperty(clientProperties: dict)
+    }
+    
     func getUserProperty(clientProperties: [String:Any]?) -> [String: Any] {
         let  userProperties = self.getProperties()
         if (clientProperties != nil) {
@@ -39,7 +61,7 @@ final class UserProperties {
         }
         setLaunctCount()
         setAnonymousID()
-        setUserID()
+//        setUserID()
         setIsIDFATrackingEnabled()
         setIdentifierForAdvertising()
         return contextProps
@@ -47,9 +69,9 @@ final class UserProperties {
     
     func setIdentifierForAdvertising() {
         //ToDo: remove later
-        contextProps["klerio_adv_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        contextProps["klerio_adv_id"] = UIDevice.current.identifierForVendor!.uuidString
         return
-        
+
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
             contextProps["klerio_adv_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         }
@@ -57,40 +79,48 @@ final class UserProperties {
     
     func setIsIDFATrackingEnabled() {
         if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            contextProps["klerio_adv_id_not_allowed"] = "false"
+            contextProps["klerio_adv_id_not_allowed"] = false
         }else {
-            contextProps["klerio_adv_id_not_allowed"] = "true"
+            contextProps["klerio_adv_id_not_allowed"] = true
         }
     }
     
     func setAnonymousID() {
-        //ToDo: remove later
-        contextProps["klerio_anonymous_id"] = UIDevice.current.identifierForVendor!.uuidString
-        return
-        
-        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            contextProps["klerio_anonymous_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        if contextProps["klerio_anonymous_id"] != nil{
+             //saved value don't do use last one
         }else{
+            //ToDo: remove later
             contextProps["klerio_anonymous_id"] = UIDevice.current.identifierForVendor!.uuidString
+            return
+            
+            if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+                contextProps["klerio_anonymous_id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+            }else{
+                contextProps["klerio_anonymous_id"] = UIDevice.current.identifierForVendor!.uuidString
+            }
         }
     }
-    
-    func setUserID() {
-        //ToDo: remove later
-        contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
-        return
         
-        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
-            contextProps["id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-        }else{
-            contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
+        //    func setUserID() {
+        //        if contextProps["id"] != nil{
+        //            //saved value don't do use last one
+        //        }
+        //    }
+        
+        //    func setUUuserID() {
+        //        //ToDo: remove later
+        //        contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
+        //        return
+        //        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+        //            contextProps["id"] = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        //        }else{
+        //            contextProps["id"] = UIDevice.current.identifierForVendor!.uuidString
+        //        }
+        //    }
+        
+        func setLaunctCount() {
+            let currentCount = UserDefaults.standard.integer(forKey: "launchCount")
+            contextProps["klerio_launch_count"] = currentCount
         }
-    }
-
-    
-    func setLaunctCount() {
-        let currentCount = UserDefaults.standard.integer(forKey: "launchCount")
-        contextProps["klerio_launch_count"] = currentCount
-    }
-    
+        
 }

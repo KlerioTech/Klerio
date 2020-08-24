@@ -38,4 +38,10 @@ public final class Klerio {
             EventBuilder.shared.buildUserProperties(properties: userProperties!)
         }
     }
+    
+    public func setUserId (userId: String?) {
+        if ((userId) != nil) {
+            EventBuilder.shared.setUserID(userId: userId!)
+        }
+    }
 }
